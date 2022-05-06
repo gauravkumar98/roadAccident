@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<!--
+	User Page-->
+<html>
+
+<head>
+	<title>Road Accknowledgement</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/png" href={{ url_for('static', filename='images/transport.png') }}>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	<noscript>
+		<link rel="stylesheet" href={{ url_for('static', filename='css/noscript.css') }} /></noscript>
+
+	<style media="screen">
+		/* general */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		/* Nav Bar */
+		#side {
+			margin: 10px 25px 0;
+		}
+
+		.heading {
+			text-align: center;
+			font-size: 50px;
+		}
+
+		.inner nav ul {
+			display: flex;
+			color: black;
+			font-weight: bold;
+			text-decoration: none;
+			list-style: none;
+			justify-content: flex-end;
+			margin-top: 50px;
+			margin-right: 50px;
+		}
+
+		.inner nav ul a {
+			margin: 0 10px;
+			font-size: 22px;
+		}
+		li a:hover{
+      color: blueviolet;
+    }
+
+		/* main_body */
+		#main_body {
+			margin: 50px 50px 0;
+		}
+
+		.contanier {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.contanier img {
+			z-index: -1;
+			height: 500px;
+			width: 500px;
+		}
+
+		.contanier .text h3 {
+			font-size: 35px;
+			margin-bottom: 5px;
+		}
+
+		.contanier .text p {
+			font-size: 22px;
+			margin: 15px 0;
+			color: black;
+		}
+
+		/* .action{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.action .prediction{
+		margin-right: 15px;
+		margin-bottom: 10px;
+	}
+	.action .prediction p{
+		font-size: 25px;
+	} */
+		.btn {
+			background-color: blue;
+			color: white;
+			width: 150px;
+			height: 40px;
+			border-radius: 18px;
+			margin-top: 10px;
+		}
+
+		.btn a {
+			color: white;
+			text-decoration: none;
+		}
+
+		@media (max-width:800px) {
+			.heading {
+				font-size: 40px;
+			}
+
+			.contanier img {
+				height: 300px;
+				width: 300px;
+			}
+
+			.contanier .text h3 {
+				font-size: 22px;
+				margin-bottom: 5px;
+			}
+
+			.contanier .text p {
+				font-size: 16px;
+				margin: 15px 0;
+			}
+		}
+
+		@media (max-width:480px) {
+			.heading {
+				font-size: 25px;
+			}
+
+			.inner nav ul {
+				justify-content: center;
+				margin-right: 0;
+			}
+
+			.inner nav ul a {
+				font-size: 16px;
+			}
+
+			.contanier {
+				flex-direction: column;
+			}
+
+			.contanier img {
+
+				height: 250px;
+				width: 250px;
+			}
+
+			.contanier .text h3 {
+				font-size: 25px;
+				margin-bottom: 5px;
+			}
+
+			.contanier .text p {
+				font-size: 18px;
+				margin: 15px 0;
+			}
+		}
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<!-- Sidebar -->
+	<section id="side">
+		<h1 class="heading">Road Accidents Acknowledgement</h1>
+		<div class="inner">
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('main.login')}}">Admin Login</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+	<section id="main_body">
+		<div class="contanier">
+			<img src="static/images/vehicle_off_road.svg" alt="">
+			<div class="text">
+				<h3>Hello, User we hope for your better and secure journey.</h3>
+				<!-- <p>Take action from below.</p> -->
+				<div class="action">
+					<div class="prediction">
+						<p>Are you ready for prediction?</p>
+						<a href="{{ url_for('main.interaction') }}">		<button class="btn" type="button" name="button" class="btn"> Yes, I am </button> </a>
+					</div>
+					<!-- <div class="user_guide">
+					 	  	 <p>You want to know more about this application?</p>
+								 <button class="btn" type="button" name="button" class="btn"> <a href="#">YES, I want to.</a> </button>
+					 	  </div> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<!-- Scripts -->
+
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.scrollex.min.js"></script>
+	<script src="static/js/jquery.scrolly.min.js"></script>
+	<script src="static/js/browser.min.js"></script>
+	<script src="static/js/breakpoints.min.js"></script>
+	<script src="static/js/util.js"></script>
+	<script src="static/js/main.js"></script>
+
+</body>
+
+</html>

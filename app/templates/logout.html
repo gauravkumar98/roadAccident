@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+
+    <style>
+     *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+     }
+     body{
+         min-height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+     }
+     .logout h3{
+         font-size: 22px;
+         font-weight: 300;
+         margin-bottom: 25px;
+     }
+     .btn{
+         padding: 10px;
+         border-radius: 18px;
+         cursor: pointer;
+     }
+     a{
+         text-decoration: none;
+     }
+
+    </style>
+</head>
+<body>
+    <div class="logout">
+        <h3>Logout Successfully</h3>
+      <a href="{{ url_for('main.login')}}"><button class="btn">Click here to Login Again</button> </a>
+    </div>
+</body>
+</html>

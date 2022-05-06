@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Road Acknowledgement</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <!-- <link rel="icon" type="image/png" href={{ url_for('static', filename='images/transport.png') }}>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+		<noscript><link rel="stylesheet" href={{ url_for('static', filename='css/noscript.css') }}/></noscript> -->
+
+  <style media="screen">
+    /* general */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Nav Bar */
+  /* nav bar */
+  #side {
+			margin: 10px 25px 0;
+		}
+
+		.heading {
+			text-align: center;
+			font-size: 50px;
+		}
+
+		.inner nav ul {
+			display: flex;
+			color: black;
+			font-weight: bold;
+			text-decoration: none;
+			list-style: none;
+			justify-content: flex-end;
+			margin-top: 50px;
+			margin-right: 50px;
+		}
+
+		.inner nav ul a {
+			margin: 0 10px;
+			font-size: 22px;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+    li a:hover{
+      color: blueviolet;
+    }
+
+    /* main_body */
+    /* profile */
+    .intro_section {
+      margin: 100px 150px 0;
+      border: 1px;
+      height: 520px;
+      border-radius: 50px;
+    }
+
+    .profile {
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 100px;
+      border: solid 1px;
+      border-radius: 50px;
+      display: inline-flex;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+
+    .profile img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .profile p {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .profile span img {
+      height: 15px;
+      width: 15px;
+      transform: rotate(-90deg);
+      margin-top: 5px;
+    }
+
+    /* heading intro */
+    .intro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro .intro_image img {
+      height: 450px;
+      width: 450px;
+      margin-right: 15px;
+    }
+
+    .intro h3 {
+      text-align: center;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: bold;
+      margin: 0px 50px 35px;
+    }
+
+    .intro p {
+      text-align: center;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .intro span img {
+      margin: 10px 50%;
+      height: 25px;
+      width: 30px;
+    }
+
+    /* view part */
+
+    .view {
+      margin: 100px 150px 0;
+    }
+
+    .inside_view {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text_inside_view h5 {
+      font-size: 25px;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .text_inside_view {
+      margin: 0 25px 0 50px;
+    }
+
+    .text_inside_view p {
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .img_inside_view img {
+      height: 450px;
+      width: 450px;
+    }
+
+    /* exploration part */
+    .explor {
+      margin: 100px 150px 0;
+    }
+
+    .inside_explor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text_inside_explor h5 {
+      font-size: 25px;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .text_inside_explor {
+      margin: 0 50px 0 25px;
+    }
+
+    .text_inside_explor p {
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .img_inside_explor img {
+      height: 450px;
+      width: 450px;
+    }
+
+    /* interaction part */
+    .inter {
+      margin: 100px 150px 0;
+    }
+
+    .inside_inter {
+      display: flex;
+      justify-content: content;
+      align-items: center;
+    }
+
+    .text_inside_inter h5 {
+      font-size: 25px;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .text_inside_inter p {
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .text_inside_inter {
+      margin: 0 25px 0 50px;
+    }
+
+    .img_inside_inter img {
+      height: 450px;
+      width: 450px;
+    }
+
+    .pop_profile {
+      height: 90px;
+      width: 220px;
+      position: absolute;
+      border: solid 1px;
+      font-size: 18px;
+      border-radius: 25px;
+      top: 310px;
+      left: 430px;
+      display: none;
+    }
+
+    .pop_profile_inside {
+      padding: 10px 5px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dis {
+      display: block;
+    }
+
+    /* media query */
+
+    @media (max-width:1100px) {
+      .intro_section {
+        margin: 100px 120px 0;
+      }
+
+      .heading {
+        font-size: 46px;
+      }
+
+      .intro_text h3 {
+        font-size: 25px;
+        text-align: left;
+        margin: 0px 0px 35px;
+      }
+
+      .intro p {
+        text-align: left;
+        font-size: 16px;
+        text-transform: uppercase;
+        padding-left: 50px;
+      }
+
+      .intro span img {
+        margin: 10px 100px;
+        height: 20px;
+        width: 35px;
+      }
+
+      .intro .intro_image img {
+        height: 350px;
+        width: 350px;
+      }
+
+      .view {
+        margin: 0px 120px 0;
+      }
+
+      .img_inside_view img {
+        height: 350px;
+        width: 350px;
+      }
+
+      .text_inside_view {
+        margin: 0 0px 0 50px;
+      }
+
+      .explor {
+        margin: 100px 120px 0;
+      }
+
+      .img_inside_explor img {
+        height: 350px;
+        width: 350px;
+      }
+
+      .text_inside_explor {
+        margin: 0 50px 0 0px;
+      }
+
+      .inter {
+        margin: 100px 120px 0;
+      }
+
+      .img_inside_inter img {
+        height: 350px;
+        width: 350px;
+      }
+
+      .text_inside_inter {
+        margin: 0 0px 0 50px;
+      }
+    }
+
+    @media (max-width:875px) {
+      .intro_section {
+        margin: 80px 70px 0;
+      }
+
+      .heading {
+        font-size: 40px;
+      }
+
+      .inner nav ul {
+        justify-content: center;
+        margin-right: 0;
+      }
+
+      .inner nav ul a {
+        font-size: 18px;
+      }
+
+      .intro_text h3 {
+        font-size: 23px;
+        text-align: left;
+        margin: 0px 0px 35px;
+      }
+
+
+      .view {
+        margin: 0px 70px 0;
+      }
+
+      .explor {
+        margin: 100px 70px 0;
+      }
+
+      .inter {
+        margin: 100px 70px 0;
+      }
+
+      .pop_profile {
+
+        top: 280px;
+        left: 350px;
+
+      }
+    }
+
+    @media (max-width:720px) {
+      .heading {
+        font-size: 35px;
+      }
+
+      .profile {
+        margin: 0 37%;
+      }
+
+      .View {
+        margin-top: 0px;
+      }
+
+      .inside_view {
+        flex-direction: column;
+      }
+
+      .inside_inter {
+        flex-direction: column;
+      }
+
+      .inside_explor {
+        flex-direction: column-reverse;
+      }
+
+      .text_inside_inter {
+        margin: 35px 0 0 0;
+      }
+
+      .text_inside_view {
+        margin: 35px 0 0 0;
+      }
+
+      .text_inside_explor {
+        margin: 35px 0 0 0;
+      }
+
+      .pop_profile {
+
+        top: 260px;
+        left: 250px;
+
+      }
+    }
+
+    @media (max-width:655px) {
+      .intro {
+        flex-direction: column-reverse;
+      }
+
+      .intro h3 {
+        text-align: center;
+        font-size: 25px;
+      }
+
+      .intro p {
+        text-align: center;
+        font-size: 16px;
+        text-transform: uppercase;
+        display: none;
+      }
+
+      .intro span img {
+        margin: 0px 50%;
+        height: 25px;
+        width: 30px;
+      }
+
+      .view {
+        margin-top: 50px;
+      }
+
+      .pop_profile {
+
+        top: 200px;
+        left: 420px;
+        font-size: 16px;
+        width: 190px;
+        height: 75px;
+      }
+    }
+    @media (max-width:635px)
+    {
+      .pop_profile {
+        top: 120px;
+        left: 220px;
+    }
+  }
+  @media (max-width:580px)
+  {
+    .pop_profile {
+      top: 165px;
+      left: 220px;
+      font-size: 14px;
+  }
+  }
+    @media (max-width:480px) {
+      .intro_section {
+        margin: 100px 30px 0;
+      }
+
+      .inner nav ul a {
+        font-size: 15px;
+      }
+
+      .heading {
+        font-size: 25px;
+      }
+
+      .intro_text h3 {
+        font-size: 20px;
+        text-align: center;
+        margin: 0px 0px 35px;
+      }
+
+      .intro span img {
+        margin: 0px 50%;
+        height: 25px;
+        width: 30px;
+      }
+
+      .intro .intro_image img {
+        height: 300px;
+        width: 300px;
+        margin-right: 0px;
+      }
+
+      .profile {
+        margin: -25px 30% 0;
+      }
+
+      .view {
+        margin: 0px 30px 0;
+      }
+
+      .img_inside_view img {
+        height: 300px;
+        width: 300px;
+      }
+
+      .text_inside_view {
+        margin: 25px 0px 15px 0px;
+      }
+
+      .explor {
+        margin: 0px 30px 0;
+      }
+
+      .img_inside_explor img {
+        height: 300px;
+        width: 300px;
+      }
+
+      .text_inside_explor {
+        margin: 25px 0px 15px 0px;
+      }
+
+      .inter {
+        margin: 00px 30px 0;
+      }
+
+      .img_inside_inter img {
+        height: 300px;
+        width: 300px;
+      }
+
+      .text_inside_inter {
+        margin: 25px 0px 15px 0px;
+      }
+
+      .pop_profile {
+         top: 115px;
+        left: 120px;
+        font-size: 12px;
+        height: 60px;
+      }
+    }
+
+  </style>
+</head>
+
+<body class="is-preload">
+
+  <!-- Sidebar -->
+  <section id="side">
+		<h1 class="heading">Road Accidents Acknowledgement</h1>
+		<div class="inner">
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('main.home')}}">Home</a></li>
+					<li><a href="{{ url_for('main.dataset')}}">Dataset</a></li>
+					<li><a href="{{ url_for('main.exploration')}}">Exploration</a></li>
+					<li><a href="{{ url_for('main.interaction') }}">Interaction</a></li>
+					<li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+  <section class="intro_section">
+    <div class="profile" onclick="popUp()">
+      <img src= "static/images/avatar-michelle.jpg"alt="">
+      <p>Hello, Admin</p>
+      <span><img src="static/images/icon-arrow-down.svg" alt=""></span>
+    </div>
+
+    <div class="pop_profile">
+      <div class="pop_profile_inside">
+        <p>
+          Name - Admin
+        </p>
+        <p>
+          username - @admin
+        </p>
+        <p>
+          Email Id - admin@raa.com
+        </p>
+      </div>
+    </div>
+
+    <div class="intro">
+      <div class="intro_text">
+        <h3>Our eye on your safety</h3>
+        <p>how things work</p>
+        <span><img src="static/images/icon-arrow-down.svg" alt=""></span>
+      </div>
+      <div class="intro_image">
+        <img src="static/images/admin-1img.svg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="view">
+    <div class="inside_view">
+      <div class="img_inside_view">
+        <img src="static/images/view.svg" alt="">
+      </div>
+      <div class="text_inside_view">
+        <h5>Update Datasets</h5>
+        <p>This section allows you to upload a dataset that later admin can take a preview. This section includes all data that is uploaded using a CSV file.  </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="explor">
+    <div class="inside_explor">
+
+      <div class="text_inside_explor">
+        <h5>Exploration</h5>
+        <p>Analyzing and working on data is the most critical part. In the road accident acknowledgment, past data helps us understand, analyze and explore more details knowledge. Which aid in controlling accident and the safety of the traveler.</p>
+      </div>
+      <div class="img_inside_explor">
+        <img src="static/images/exploration.svg"alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="inter">
+    <div class="inside_inter">
+      <div class="img_inside_inter">
+        <img src="static/images/Interaction.svg" alt="">
+      </div>
+      <div class="text_inside_inter">
+        <h5>Interaction</h5>
+        <p>Choose your source, destination, date, time of journey, and BOOM. All the magic is visible there. This section helps not only the user but also the admin panels to check the “total number of the accident based on their preference” so that they can take action accordingly.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function popUp(){
+      const popup= document.querySelector(".pop_profile");
+        if (popup.classList.contains("dis")) {
+          popup.classList.remove("dis");
+        } else {
+          popup.classList.add("dis");
+        }
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

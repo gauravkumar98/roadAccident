@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File uploaded</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+
+        }
+  .main{
+    display: flex;
+    justify-content: center;
+            margin-top: 170px;
+  }
+  /* nav bar */
+  #side {
+			margin: 10px 25px 0;
+		}
+
+		.heading {
+			text-align: center;
+			font-size: 50px;
+		}
+
+		.inner nav ul {
+			display: flex;
+			color: black;
+			font-weight: bold;
+			text-decoration: none;
+			list-style: none;
+			justify-content: flex-end;
+			margin-top: 50px;
+			margin-right: 50px;
+		}
+
+		.inner nav ul a {
+			margin: 0 10px;
+			font-size: 22px;
+		}
+		li a:hover{
+      color: blueviolet;
+    }
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+    </style>
+</head>
+<body>
+    <section id="side">
+		<h1 class="heading">Road Accidents Acknowledgement</h1>
+		<div class="inner">
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('main.home')}}">Home</a></li>
+					<li><a href="{{ url_for('main.dataset')}}">Dataset</a></li>
+					<li><a href="{{ url_for('main.exploration')}}">Exploration</a></li>
+					<li><a href="{{ url_for('main.interaction') }}">Interaction</a></li>
+					<li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+    <div class="main">
+        <h1>File is Already Uploaded.</h1>
+    </div>
+</body>
+</html>

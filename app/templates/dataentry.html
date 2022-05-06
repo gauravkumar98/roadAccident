@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+
+    #side {
+      margin: 10px 25px 0;
+    }
+
+    .heading {
+      text-align: center;
+      font-size: 50px;
+    }
+
+    .inner nav ul {
+      display: flex;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      list-style: none;
+      justify-content: flex-end;
+      margin-top: 50px;
+      margin-right: 50px;
+    }
+
+    .inner nav ul a {
+      margin: 0 10px;
+      font-size: 22px;
+      text-decoration: none;
+      color: black;
+    }
+    ul li a:hover{
+      color: blueviolet;
+    }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+    .formAndMap{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 50px 150px;
+    }
+   .map_container{
+     width:500px;
+   }
+   #gmap{
+     width:100%;
+     height:400px;
+   }
+  #takeDate{
+    margin-left:75px;
+  }
+
+  #success{
+    margin-top:-100px;
+    margin-left: 150px;
+    display: flex;
+    align-items: center;
+    margin-top: -100px;
+  }
+
+  button:hover{
+     background-color: black;
+     color: white;
+  }
+</style>
+</head>
+
+<body>
+  <section id="side">
+    <h1 class="heading">Road Accidents Acknowledgement</h1>
+    <div class="inner">
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('main.home')}}">Home</a></li>
+          <li><a href="{{ url_for('main.dataset')}}">Dataset</a></li>
+          <li><a href="{{ url_for('main.exploration')}}">Exploration</a></li>
+          <li><a href="{{ url_for('main.interaction') }}">Interaction</a></li>
+          <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- form and map -->
+
+  <div class="formAndMap">
+    <div class="dataForm">
+      <form class="dateEntry">
+        <table>
+          <tr>
+            <td>Date</td>
+            <td><input type="date" name="date" id="takeDate" onselect="df()" required> </td>
+          </tr>
+        </table>
+      </form>
+
+      <form class="inputForm" action="" method="post">
+
+        <table>
+          <tr>
+            <td>Longitude</td>
+            <td><input type="text" name="Longitude" autocomplete="off" required> </td>
+          </tr>
+          <tr>
+            <td>Latitude</td>
+            <td><input type="text" name="Latitude" autocomplete="off" required> </td>
+          </tr>
+
+          <tr>
+            <td>Day</td>
+            <td><select name="day_of_week" id="day_of_Week">
+                <option value="0">Sunday</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+              </select></td>
+          </tr>
+
+          <tr>
+            <td>Local Authority</td>
+            <td><input type="number" name="local_authority" autocomplete="off" required> </td>
+          </tr>
+
+
+          <tr>
+            <td>Road_Condition</td>
+            <td> <select name="road_condition" required>
+                <option>--SELECT--</option>
+                <option value="3">other</option>
+                <option value="2">Slippery</option>
+                <option value="1" selected>Dry</option>
+              </select> </td>
+          </tr>
+
+          <tr>
+            <td>Road Number</td>
+            <td><input type="number" name="road_number" autocomplete="off" required> </td>
+          </tr>
+
+          <tr>
+            <td>Speed_Limit</td>
+            <td><input type="number" name="speed_limit" autocomplete="off" required> </td>
+          </tr>
+
+
+          <tr>
+            <td>Year</td>
+            <td><input type="text" name="year" id="year" autocomplete="off"> </td>
+          </tr>
+
+
+          <tr>
+            <td>Cluster</td>
+            <td><input type="number" autocomplete="off" name="cluster" required> </td>
+          </tr>
+
+          <tr>
+            <td>Day of Year</td>
+            <td><input type="text" name="day_of_year" autocomplete="off" id="day_of_year"> </td>
+          </tr>
+
+          <tr>
+            <td>Hour</td>
+            <td><input type="number" name="hour" id="hour" max="23" min="0" autocomplete="off" required> </td>
+          </tr>
+          <tr>
+            <td colspan="3" style="text-align:center">
+              <button value="submit">Submit</button>
+              <br>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="map_container">
+      <div id="gmap"></div>
+      lat:<span id="lat"></span> lon:<span id="lon"></span><br />
+      zoom level: <span id="zoom_level"></span>
+    </div>
+  </div>
+  <div id="success">
+    <!-- success -->
+    {% if success %}
+    <p class="success"><strong>Success:</strong> {{ success }}</p>
+    <a href="{{ url_for('main.uploaded')}}"> <button type="button" class="btn btn-outline-primary prev" name="button"><strong>VIEW</strong></button> </a>
+    {% endif %}
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz2K9SaXeYN3Ra9j7ec3Mkxfg9w9D6v8&callback=myMap"></script>
+<script type="text/javascript">
+
+  <!-- javascript for map -->
+  var map;
+    var marker=false;
+    function initialize() {
+      var myLatlng = new google.maps.LatLng(51.509865,-0.118092);
+
+      var myOptions = {
+        zoom: 16,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+      }
+
+      map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+
+      marker = new google.maps.Marker({
+          	position: myLatlng,
+          	map: map
+      	});
+
+      google.maps.event.addListener(map, 'center_changed', function() {
+      	var location = map.getCenter();
+    	document.getElementById("lat").innerHTML = location.lat();
+    	document.getElementById("lon").innerHTML = location.lng();
+        placeMarker(location);
+      });
+      google.maps.event.addListener(map, 'zoom_changed', function() {
+      	zoomLevel = map.getZoom();
+    	document.getElementById("zoom_level").innerHTML = zoomLevel;
+      });
+      google.maps.event.addListener(marker, 'dblclick', function() {
+        zoomLevel = map.getZoom()+1;
+        if (zoomLevel == 20) {
+         zoomLevel = 10;
+       	}
+    	document.getElementById("zoom_level").innerHTML = zoomLevel;
+    	map.setZoom(zoomLevel);
+
+      });
+
+       document.getElementById("zoom_level").innerHTML = 16;
+      document.getElementById("lat").innerHTML = 51.509865;
+      document.getElementById("lon").innerHTML = -0.118092;
+
+    }
+
+    function placeMarker(location) {
+      var clickedLocation = new google.maps.LatLng(location);
+      marker.setPosition(location);
+    }
+    window.onload = function(){initialize();};
+
+   
+
+    document.getElementById("takeDate").addEventListener("change", function () {
+    var input = this.value;
+    var d = new Date(input);
+    year = d.getFullYear();
+    month = d.getMonth() + 1;
+    day = d.getDay();
+    //.attr('disabled', '');
+    document.getElementById("year").value = year;
+    var start = new Date(year, 0, 0);
+    var diff = d - start + (start.getTimezoneOffset() - d.getTimezoneOffset()) * 60 * 1000;
+    var oneDay = 1000 * 60 * 60 * 24;
+    var yearDay = Math.floor(diff / oneDay);
+    document.getElementById("day_of_year").value = yearDay;
+    document.getElementById("day_of_week").value = day;
+});
+</script>
+</body>
+
+</html>

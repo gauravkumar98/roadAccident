@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Exploration</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- <link rel="icon" type="image/png" href={{ url_for('static', filename='images/transport.png') }}>
+	<link rel="stylesheet" href="static/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="static/css/noscript.css" /></noscript> -->
+
+	<!-- style -->
+
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* nav bar */
+		#side {
+			margin: 10px 25px 0;
+		}
+
+		.heading {
+			text-align: center;
+			font-size: 50px;
+		}
+
+		.inner nav ul {
+			display: flex;
+			color: black;
+			font-weight: bold;
+			text-decoration: none;
+			list-style: none;
+			justify-content: flex-end;
+			margin-top: 50px;
+			margin-right: 50px;
+		}
+
+		.inner nav ul a {
+			margin: 0 10px;
+			font-size: 22px;
+		}
+		li a:hover{
+      color: blueviolet;
+    }
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+		/* introduction */
+
+		#introduction {
+			margin: 50px;
+		}
+
+		.inside_introduction {
+			font-size: 17px;
+			line-height: 1.2;
+			text-align: justify;
+		}
+
+		.major {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+
+		/* exploration part */
+		.exploration_details {
+			margin: 0 50px;
+		}
+
+		.exploration {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0 50px 40px 50px;
+		}
+
+		.exploration .title {
+			font-size: 20px;
+			margin-bottom: 25px;
+		}
+
+		.exploration .title_para {
+			font-size: 16px;
+			margin-bottom: 15px;
+			text-align: justify;
+			line-height: 1.3;
+		}
+
+		.graph_text {
+			margin: 0 40px;
+
+		}
+
+		.graph iframe {
+			height: 600px;
+			width: 800px;
+			border: none;
+
+		}
+
+		/* media queris  */
+		@media (max-width:1150px) {
+			.exploration {
+				margin: 40px 100px;
+			}
+
+			@media (max-width:1080px) {
+				.exploration {
+					margin: 40px 60px;
+				}
+
+				@media (max-width:1000px) {
+					.exploration {
+						margin: 40px 30px;
+					}
+
+					@media (max-width:940px) {
+						.exploration {
+							margin: 40px 0px;
+						}
+
+						@media (max-width:880px) {
+
+							/* navbar */
+							.heading {
+								font-size: 40px;
+							}
+
+							.inner nav ul {
+								justify-content: center;
+								margin-right: 0;
+							}
+
+							.inner nav ul a {
+								font-size: 18px;
+							}
+
+							.exploration {
+								flex-direction: column;
+							}
+
+							.graph {
+								margin: 0 auto 25px;
+							}
+
+							.graph iframe {
+								height: 450px;
+								width: 450px;
+							}
+
+							.second_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.forth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.sixth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.title {
+								text-align: center;
+							}
+						}
+
+						@media (max-width:550px) {
+
+							/* navbar */
+							.heading {
+								font-size: 30px;
+							}
+
+							.inner nav ul {
+								justify-content: center;
+								margin-right: 0;
+							}
+
+							.inner nav ul a {
+								font-size: 16px;
+							}
+
+							.exploration {
+								flex-direction: column;
+							}
+
+							.graph {
+								margin: 0 auto 25px;
+							}
+
+							.graph iframe {
+								height: 400px;
+								width: 400px;
+							}
+
+							.second_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.forth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.sixth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.title {
+								text-align: center;
+							}
+						}
+
+						@media (max-width:480px) {
+
+							/* navbar */
+							.heading {
+								font-size: 30px;
+							}
+
+							.inner nav ul {
+								justify-content: center;
+								margin-right: 0;
+							}
+
+							.inner nav ul a {
+								font-size: 14px;
+							}
+
+							.exploration {
+								flex-direction: column;
+							}
+
+							.graph {
+								margin: 0 auto 25px;
+							}
+
+							.graph_text {
+								margin: 0 0;
+							}
+
+							.graph iframe {
+								height: 300px;
+								width: 300px;
+								align-items: center;
+							}
+
+							.second_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.forth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.sixth_exploration {
+								flex-direction: column-reverse;
+							}
+
+							.title {
+								text-align: center;
+							}
+						}
+					}
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<section id="side">
+		<h1 class="heading">Road Accidents Acknowledgement</h1>
+		<div class="inner">
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('main.home')}}">Home</a></li>
+					<li><a href="{{ url_for('main.dataset')}}">Dataset</a></li>
+					<li><a href="{{ url_for('main.exploration')}}">Exploration</a></li>
+					<li><a href="{{ url_for('main.interaction') }}">Interaction</a></li>
+					<li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+	<section id="introduction">
+		<div class="inside_introduction">
+			<p>Analyzing data in large sets is one of the most difficult parts of the human world.
+             Even if we considered it done with manpower, then there is not any guarantee that it will
+            provide accurate analysis. Although, thanks to the latest technology which helps us to get analysis of over any amount of data with top accuracy.
+          With the help of the analysis results, we can perform the required task in less time and take the action accordingly.
+           In this exploration part, we have worked on provided datasets, upon exploration, we made several observations. These observations are explained below.
+</p>
+		</div>
+	</section>
+
+	<!-- Main -->
+	<section id="three" class="wrapper exploration_details">
+		<div class="inner">
+			<h1 class="major">Exploration and Observations</h1>
+
+			<div class="first_exploration exploration">
+				<!-- style="height:550px;width:550px;border: 2px steelblue solid;padding: 15px;margin: :5px;float:right" -->
+				<div class="graph">
+					<iframe src="{{ url_for('main.month') }}" id="iframe_month"></iframe>
+				</div>
+				<div class="graph_text">
+					<p class="title"><b><i>Which months are road traffic accidents most likely to occur? </b></i></p>
+					<p class="title_para">The heatmap shows how many accidents have occured for each day of
+						the week in all calendar months.
+						We can see that the months of September until December are characterized by a relatively high
+						frequency of accident.
+						These are the months of autumn in London, which are characterized by low temperature, fog and
+						rain.</p>
+
+					<p class="title_para">We also observe that, counterintuitively, fewer accidents take place in the
+						chilly winter months of January and February.
+						This might suggest that people are more reluctant to drive during this time.</p>
+				</div>
+			</div>
+
+
+			<p style="clear:both"> </p>
+			<div class="second_exploration exploration">
+				<div class="graph_text">
+					<p class="title"><b><i>What time of the day are road traffic accidents most likely to occur?
+						</b></i>
+
+						<p class="title_para">For each day of the week, this heatmap shows how many traffic accidents
+							have occured by the hour.
+							We observe that not surprisingly, most RTA happens during morning rush hour from 8am to 9am
+							and evening rush hour from 3pm to 7pm (purple blocks).
+							Friday is particularly worse compared to the other days of the week; this might be due to
+							the fact that more people drive on Fridays.
+						</p>
+				</div>
+				<div class="graph">
+					<!-- style="height:550px;width:850px;border: 2px steelblue solid;padding: 15px;margin: 15px;float:left" -->
+					<iframe src="{{ url_for('main.hour') }}" name="iframe_b"></iframe>
+				</div>
+			</div>
+			<p style="clear:both"> </p>
+			<div class="third_exploration exploration">
+				<div class="graph">
+					<!-- style="height:550px;width:850px;border: 2px steelblue solid;padding: 15px;margin-right:15px;float:right" -->
+					<iframe src="{{ url_for('main.vehicles') }}" name="iframe_c"></iframe>
+				</div>
+				<div class="graph_text">
+					<p class="title"><b><i>How many vehicles are involved per accident?</b></i></p>
+					<p class="title_para"> The bar graph shows the distribution of accidents based on the
+						number of vehicles involved.
+						It shows that most accidents involve one or two vehicles.
+						This intuitively makes sense; most accidents happen as a result of a car veering off the road
+						and/or collision between two cars.</p>
+				</div>
+			</div>
+
+			<p style="clear:both"> </p>
+
+			<div class="forth_exploration exploration">
+				<div class="graph_text">
+					<p class="title"><b><i>How many casualties are involved in the accidents?</b></i></p>
+
+					<p class="title_para"> The bar graph shows the distribution of accidents based on the
+						number of casualties involved.
+						A casualty can also be a minor injury to fatal. We see that most of the accidents involve only
+						one casualty.</p>
+				</div>
+				<div class="graph">
+					<!-- style="height:550px;width:850px;border: 2px steelblue solid;padding: 15px;margin: 15px;float:left" -->
+					<iframe src="{{ url_for('main.casualties') }}" name="iframe_d"></iframe>
+				</div>
+			</div>
+
+			<p style="clear:both"> </p>
+			<div class="fifth_exploration exploration">
+				<div class="graph">
+					<!-- style="height:750px;width:1050px;border: 2px steelblue solid;padding: 15px;margin: 15px;float:right" -->
+					<iframe src="{{ url_for('main.boroughs') }}" name="iframe_d"></iframe>
+				</div>
+				<div class="graph_text">
+					<p class="title"><b><i>In which boroughs do RTAs happen most often?</b></i></p>
+
+					<p class="title_para">The bar chart shows how many RTAs take place in different
+						boroughs of London.
+						We see that Westminster takes the number one spot and Kingston Upon Thames comes in last place
+						with the least traffic accidents.</p>
+				</div>
+			</div>
+
+
+			<p style="clear:both"> </p>
+
+			<div class="sixth_exploration exploration">
+				<div class="graph_text">
+					<p class="title"><b><i>How does each borough rank in the number of road traffic accidents?</b></i>
+					</p>
+
+					<p class="title_para">The map shows the same information as the bar chart above in a
+						different way.
+						It color codes the RTA probabilities of different boroughs, with accident-prone boroughs having
+						darker colors.
+						We can see that Westminster, with its intense purple color, taking the number one spot with the
+						most traffic accidents.
+						Kingston Upon Thames comes in last place with the least traffic accidents.
+						The three most accident prones boroughs - Westminster, Barnet and Lambeth, are indicated with
+						markers. </p>
+				</div>
+				<div class="graph">
+					<!-- style="height:750px;width:1050px;border: 2px steelblue solid;padding: 15px;margin: 15px;float:left" -->
+					<iframe src="{{ url_for('main.london') }}" name="iframe_f"></iframe>
+				</div>
+			</div>
+
+
+
+
+			<p style="clear:both"> </p>
+
+
+		</div>
+	</section>
+
+
+	</div>
+
+	<!-- Footer -->
+
+
+	<!-- Scripts -->
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.scrollex.min.js"></script>
+	<script src="static/js/jquery.scrolly.min.js"></script>
+	<script src="static/js/browser.min.js"></script>
+	<script src="static/js/breakpoints.min.js"></script>
+	<script src="static/js/util.js"></script>
+	<script src="static/js/main.js"></script>
+
+</body>
+
+</html>

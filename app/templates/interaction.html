@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Interaction</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- <link rel="icon" type="image/png" href={{ url_for('static', filename='images/transport.png') }}> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	<noscript>
+		<link rel="stylesheet" href="static/css/noscript.css" /></noscript> -->
+
+	<!-- internal style -->
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		p {
+			color: black
+		}
+
+		/* nav bar */
+		.side {
+			margin: 10px 25px 0;
+		}
+
+		.heading {
+			text-align: center;
+			font-size: 50px;
+		}
+
+		.inner nav ul {
+			display: flex;
+			color: black;
+			font-weight: bold;
+			text-decoration: none;
+			list-style: none;
+			justify-content: flex-end;
+			margin-top: 50px;
+			margin-right: 50px;
+			display: none;
+		}
+
+		.inner nav ul a {
+			margin: 0 10px;
+			font-size: 22px;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+		/* main content */
+		.wrapper {
+			margin: 50px 50px;
+		}
+
+		.major {
+			margin-bottom: 15px;
+		}
+
+		.inner p {
+			margin-bottom: 15px;
+		}
+
+		/* MAP */
+		.map_prediction {
+			display: flex;
+			justify-content: center;
+			margin-top: 50px;
+			align-items: center;
+		}
+
+		.map_prediction iframe {
+			width: 85%;
+			height: 650px;
+			border: 2px steelblue solid;
+			padding: 15px;
+			margin: 15px;
+		}
+
+		/* input in map */
+
+		#refresh{
+			height: 30px;
+			width: 150px;
+			top: 10px;
+			left: 656px;
+		}
+		/* media query */
+
+		@media (max-width:800px) {
+			.heading {
+				font-size: 40px;
+			}
+
+			.map_prediction iframe {
+				height: 450px;
+			}
+		}
+
+		@media (max-width:480px) {
+			.heading {
+				font-size: 25px;
+			}
+
+			.inner nav ul {
+				justify-content: center;
+				margin-right: 0;
+			}
+
+			.inner nav ul a {
+				font-size: 16px;
+			}
+
+			.map_prediction iframe {
+				height: 300px;
+				width: 95%;
+			}
+
+			.major {
+				font-size: 20px;
+			}
+
+			.inner p {
+				font-size: 16px;
+			}
+		}
+
+		@media (max-width:590px) {
+			.map_prediction iframe {
+				height: 350px;
+			}
+		}
+
+		@media (max-width:360px) {
+			.map_prediction iframe {
+				height: 250px;
+			}
+		}
+	</style>
+
+
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<section class="side">
+		<h1 class="heading">Road Accidents Acknowledgement</h1>
+		<div class="inner">
+			<nav>
+				<ul>
+					<li><a href="{{ url_for('main.home')}}">Home</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+
+
+	<!-- Main -->
+	<section id="main" class="wrapper">
+		<div class="inner">
+
+			<h1 class="major">Interactive RTA Prediction Map</h1>
+			<p>This interactive map allows you to find accident hotspots along an optimized driving route between two
+				locations in Greater London at a particular time.</p>
+
+			<p>To use the map, please pick : <br />
+				(1) a date/time in the next 48 hours, <br />
+				(2) your origin and <br />
+				(3) your destination <br />
+
+				<!-- <p>Your inputs will result in an API call to Google Map's Geolocation API, which will select the best driving route connecting your origin and your destination.
+						This route will be shown on the map.
+						In addition, your inputs will also trigger an API call to <a href="darksky.net">Dark Sky</a>, which will provide information about the weather condition in London for your input time.
+						We will then feed all these inputs to our predictive model, which will output the corresponding RTA risk on the map.</p> -->
+				<p> <span> <strong>NOTE:-</strong> </span> Refresh page if there are no dropdown boxes in the map.
+					Please note that accident points may take a while to load.</p>
+
+
+				<!--Date time picker-->
+				<div class='map_prediction'>
+					<!-- style="height:800px;width:1300px;border: 2px steelblue solid;padding: 15px;margin: 15px"
+ -> these are style used as inline in iframe -->
+					<iframe src="{{ url_for('main.map') }}" name="iframe_a"></iframe>
+
+				</div>
+
+
+		</div>
+	</section>
+
+
+
+
+	<!-- Scripts -->
+	<script src="static/js/d3-tip.min.js"></script>
+	<script src="static/js/interaction.js"></script>
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.scrollex.min.js"></script>
+	<script src="static/js/jquery.scrolly.min.js"></script>
+	<script src="static/js/browser.min.js"></script>
+	<script src="static/js/breakpoints.min.js"></script>
+	<script src="static/js/util.js"></script>
+	<script src="static/js/main.js"></script>
+
+
+</body>
+
+</html>
