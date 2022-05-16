@@ -8,6 +8,7 @@ import pandas as pd
 from io import TextIOWrapper
 from csv import writer
 import os
+import pickle
 
 
 
@@ -46,7 +47,6 @@ def login():
 def user():
     return render_template('index.html')
 # Admin page
-
 
 @main.route("/home")
 def home():

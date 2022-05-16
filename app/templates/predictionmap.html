@@ -237,7 +237,8 @@
         function showAccidents2(accident_json) {
 
             var icon = {
-                url: 'https://cdn3.iconfinder.com/data/icons/map-markers-1/512/death-512.png',
+                //url: 'https://cdn3.iconfinder.com/data/icons/map-markers-1/512/death-512.png',
+                url:'static/images/redMark.png',
                 scaledSize: new google.maps.Size(20, 32), // scaled size
             };
 
@@ -249,11 +250,21 @@
             setMapOnAll(null);
             markers = [];
             for (var i = 0; i < count; i++) {
+                if(accident_json.accidents[i].probability.toString()>"0.4"){
+                    icon.url = 'static/images/redMark.png'
+                }
+                else if(accident_json.accidents[i].probability.toString()>"0.3"){
+                    icon.url='static/images/yelloMark.png'
+                }
+                else if(accident_json.accidents[i].probability.toString()>"0.2"){
+                    icon.url='static/images/greenMark.png'
+                }
+
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(accident_json.accidents[i].lat, accident_json.accidents[i]
                         .lng),
                     map: map,
-                    icon: icon,
+                    icon: icon,  
                     title: 'Probability: ' + accident_json.accidents[i].probability.toString()
                 });
                 markers.push(marker);

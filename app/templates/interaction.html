@@ -93,12 +93,13 @@
 
 		/* input in map */
 
-		#refresh{
+		#refresh {
 			height: 30px;
 			width: 150px;
 			top: 10px;
 			left: 656px;
 		}
+
 		/* media query */
 
 		@media (max-width:800px) {
@@ -175,27 +176,28 @@
 	<section id="main" class="wrapper">
 		<div class="inner">
 
-			<h1 class="major">Interactive RTA Prediction Map</h1>
-			<p>This interactive map allows you to find accident hotspots along an optimized driving route between two
+			<h1 class="major">Interactive Prediction Map</h1>
+			<p>This map allows you to find accident zone along an optimized driving route between two
 				locations in Greater London at a particular time.</p>
+			<p>In the map, RED color marker show danger zone, it means you need to be more careful and need to drive
+				more safe. </p>
+			<p>YELLOW marker is used to indicate danger zone, where the probability of happening accident is less than
+				RED marker.</p>
+			<p>GREEN marker is safest among all marker, which have less probability of accident than RED and YELLOW.
+				Still, you need be take more precaution and drive safe. </p>
 
 			<p>To use the map, please pick : <br />
 				(1) a date/time in the next 48 hours, <br />
 				(2) your origin and <br />
 				(3) your destination <br />
 
-				<!-- <p>Your inputs will result in an API call to Google Map's Geolocation API, which will select the best driving route connecting your origin and your destination.
-						This route will be shown on the map.
-						In addition, your inputs will also trigger an API call to <a href="darksky.net">Dark Sky</a>, which will provide information about the weather condition in London for your input time.
-						We will then feed all these inputs to our predictive model, which will output the corresponding RTA risk on the map.</p> -->
+
 				<p> <span> <strong>NOTE:-</strong> </span> Refresh page if there are no dropdown boxes in the map.
 					Please note that accident points may take a while to load.</p>
 
 
 				<!--Date time picker-->
 				<div class='map_prediction'>
-					<!-- style="height:800px;width:1300px;border: 2px steelblue solid;padding: 15px;margin: 15px"
- -> these are style used as inline in iframe -->
 					<iframe src="{{ url_for('main.map') }}" name="iframe_a"></iframe>
 
 				</div>

@@ -1,3 +1,4 @@
+from xml.dom.minidom import TypeInfo
 import requests
 import pandas as pd
 import datetime
@@ -14,7 +15,6 @@ googlekey = Config['googlekey']
 
 script_path = os.path.dirname(os.path.abspath( __file__ + "/../"))
 accident_dataset = pd.read_csv("./app/UPLOAD_FOLDER/only_accident_points.csv")
-
 
 # Load  model nad model columns
 model = joblib.load("./model/model.pkl")
@@ -174,6 +174,7 @@ def api_call(origin, destination, tm):
 
         # merge with accident data - df with latlong and weather
         final_df = pd.merge(dat, weather, how='left', on=['Cluster'])
+        
         final_df = final_df.drop(columns=['time', 'summary', 'icon', 'ozone'], axis=0)
         final_df = final_df[model_columns]
 
