@@ -117,7 +117,7 @@
 
     <form method='post' action='upload' enctype='multipart/form-data'>
       <!-- <label for="" class="form-label">Upload a csv file:</label>   -->
-      <input type='file' name='file' class="form-control form-control-lg" id="formFileLg">
+    <fieldset> <input type='file' name='file' class="form-control form-control-lg" accept=".csv" id="formFileLg" onchange="return fileValidation()"></fieldset>
       <br>
       <button type="submit" class="btn btn-outline-primary">Submit</button>
     </form>
@@ -131,7 +131,19 @@
 
 
   </div>
+  <script>
+    function fileValidation() {
+        var fileInput = document.getElementById('formFileLg');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.csv)$/i;
 
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Invalid file type');
+            fileInput.value = '';
+            return false;
+        }
+    }
+</script>
 </body>
 
 </html>

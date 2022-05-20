@@ -60,11 +60,11 @@ input::-webkit-inner-spin-button {
   }
 
   #success{
-    margin-top:-100px;
+
     margin-left: 150px;
     display: flex;
     align-items: center;
-    margin-top: -100px;
+    margin-top: -30px;
   }
 
   button:hover{
@@ -72,6 +72,10 @@ input::-webkit-inner-spin-button {
      color: white;
   }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -97,8 +101,8 @@ input::-webkit-inner-spin-button {
       <form class="dateEntry">
         <table>
           <tr>
-            <td>Date</td>
-            <td><input type="date" name="date" id="takeDate" onselect="df()" required> </td>
+            <td class="form-check-label">Date</td>
+            <td><input type="date" name="date" id="takeDate" class="form-control" onselect="df()" required> </td>
           </tr>
         </table>
       </form>
@@ -107,17 +111,17 @@ input::-webkit-inner-spin-button {
 
         <table>
           <tr>
-            <td>Longitude</td>
-            <td><input type="text" name="Longitude" autocomplete="off" required> </td>
+            <td class="form-check-label">Longitude</td>
+            <td><input type="text" name="Longitude" class="form-control"  autocomplete="off" required> </td>
           </tr>
           <tr>
-            <td>Latitude</td>
-            <td><input type="text" name="Latitude" autocomplete="off" required> </td>
+            <td class="form-check-label">Latitude</td>
+            <td><input type="text" name="Latitude" class="form-control"  autocomplete="off" required> </td>
           </tr>
 
           <tr>
             <td>Day</td>
-            <td><select name="day_of_week" id="day_of_Week">
+            <td><select name="day_of_week" id="day_of_Week" class="form-control">
                 <option value="0">Sunday</option>
                 <option value="1">Monday</option>
                 <option value="2">Tuesday</option>
@@ -129,14 +133,14 @@ input::-webkit-inner-spin-button {
           </tr>
 
           <tr>
-            <td>Local Authority</td>
-            <td><input type="number" name="local_authority" autocomplete="off" required> </td>
+            <td class="form-check-label">Local Authority</td>
+            <td><input type="number" name="local_authority" autocomplete="off" class="form-control" required> </td>
           </tr>
 
 
           <tr>
             <td>Road_Condition</td>
-            <td> <select name="road_condition" required>
+            <td> <select name="road_condition"  class="form-control" required>
                 <option>--SELECT--</option>
                 <option value="3">other</option>
                 <option value="2">Slippery</option>
@@ -146,38 +150,38 @@ input::-webkit-inner-spin-button {
 
           <tr>
             <td>Road Number</td>
-            <td><input type="number" name="road_number" autocomplete="off" required> </td>
+            <td><input type="number" name="road_number" class="form-control" autocomplete="off" required> </td>
           </tr>
 
           <tr>
             <td>Speed_Limit</td>
-            <td><input type="number" name="speed_limit" autocomplete="off" required> </td>
+            <td><input type="number" name="speed_limit" class="form-control"  autocomplete="off" required> </td>
           </tr>
 
 
           <tr>
             <td>Year</td>
-            <td><input type="text" name="year" id="year" autocomplete="off"> </td>
+            <td><input type="text" name="year" id="year" class="form-control" autocomplete="off"> </td>
           </tr>
 
 
           <tr>
             <td>Cluster</td>
-            <td><input type="number" autocomplete="off" name="cluster" required> </td>
+            <td><input type="number" autocomplete="off" class="form-control" name="cluster" required> </td>
           </tr>
 
           <tr>
             <td>Day of Year</td>
-            <td><input type="text" name="day_of_year" autocomplete="off" id="day_of_year"> </td>
+            <td><input type="text" name="day_of_year" class="form-control" autocomplete="off" id="day_of_year"> </td>
           </tr>
 
           <tr>
             <td>Hour</td>
-            <td><input type="number" name="hour" id="hour" max="23" min="0" autocomplete="off" required> </td>
+            <td><input type="number" name="hour" id="hour" class="form-control"  max="23" min="0" autocomplete="off" required> </td>
           </tr>
           <tr>
             <td colspan="3" style="text-align:center">
-              <button value="submit">Submit</button>
+              <button class="btn btn-primary" value="submit">Submit</button>
               <br>
             </td>
           </tr>
@@ -194,7 +198,7 @@ input::-webkit-inner-spin-button {
     <!-- success -->
     {% if success %}
     <p class="success"><strong>Success:</strong> {{ success }}</p>
-    <a href="{{ url_for('main.uploaded')}}"> <button type="button" class="btn btn-outline-primary prev" name="button"><strong>VIEW</strong></button> </a>
+    <a href="{{ url_for('main.uploaded')}}"> <strong>Click here to view</strong></a>
     {% endif %}
   </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz2K9SaXeYN3Ra9j7ec3Mkxfg9w9D6v8&callback=myMap"></script>

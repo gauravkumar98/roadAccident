@@ -174,7 +174,8 @@ def api_call(origin, destination, tm):
 
         # merge with accident data - df with latlong and weather
         final_df = pd.merge(dat, weather, how='left', on=['Cluster'])
-        
+        # final_df.to_csv('./filename.csv', index = False)
+        # print(final_df)
         final_df = final_df.drop(columns=['time', 'summary', 'icon', 'ozone'], axis=0)
         final_df = final_df[model_columns]
 

@@ -1,22 +1,15 @@
 <!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 
 <head>
-	<title>Interaction</title>
+	<title>Prediction</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<!-- <link rel="icon" type="image/png" href={{ url_for('static', filename='images/transport.png') }}> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-	<noscript>
-		<link rel="stylesheet" href="static/css/noscript.css" /></noscript> -->
+
 
 	<!-- internal style -->
 	<style media="screen">
@@ -64,14 +57,19 @@
 
 		/* main content */
 		.wrapper {
-			margin: 50px 50px;
+			margin: 50px 0px;
+		}
+
+		.interaction_content {
+			margin: 50px 150px;
 		}
 
 		.major {
 			margin-bottom: 15px;
+			text-align: left;
 		}
 
-		.inner p {
+		.interaction_content p {
 			margin-bottom: 15px;
 		}
 
@@ -85,7 +83,7 @@
 
 		.map_prediction iframe {
 			width: 85%;
-			height: 650px;
+			height: 700px;
 			border: 2px steelblue solid;
 			padding: 15px;
 			margin: 15px;
@@ -100,6 +98,37 @@
 			left: 656px;
 		}
 
+		/* guidelines */
+
+		.guidelines {
+			width: 500px;
+			height: auto;
+			text-align: justify;
+			padding: 15px;
+			margin: 0 auto;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -25%);
+			background-color: bisque;
+			border-radius: 12px;
+			display: none;
+		}
+
+		.active {
+			display: block;
+		}
+
+		.btn {
+			background-color: blueviolet;
+			padding: 5px;
+			color: white;
+		}
+
+		.btn_close {
+			margin: 5px 80%;
+		}
+
 		/* media query */
 
 		@media (max-width:800px) {
@@ -109,6 +138,15 @@
 
 			.map_prediction iframe {
 				height: 450px;
+			}
+
+			.interaction_content {
+				margin: 50px 75px;
+			}
+
+			.guidelines {
+				margin: auto 10px;
+				width: 80%;
 			}
 		}
 
@@ -126,6 +164,11 @@
 				font-size: 16px;
 			}
 
+			.guidelines {
+				margin: auto 5px;
+				width: 95%;
+			}
+
 			.map_prediction iframe {
 				height: 300px;
 				width: 95%;
@@ -135,8 +178,12 @@
 				font-size: 20px;
 			}
 
-			.inner p {
+			.interaction_content p {
 				font-size: 16px;
+			}
+
+			.interaction_content {
+				margin: 50px 25px;
 			}
 		}
 
@@ -144,11 +191,19 @@
 			.map_prediction iframe {
 				height: 350px;
 			}
+
+			.interaction_content {
+				margin: 50px 50px;
+			}
 		}
 
 		@media (max-width:360px) {
 			.map_prediction iframe {
 				height: 250px;
+			}
+
+			.interaction_content {
+				margin: 50px 10px;
 			}
 		}
 	</style>
@@ -174,43 +229,75 @@
 
 	<!-- Main -->
 	<section id="main" class="wrapper">
-		<div class="inner">
+		<div class="interaction_content">
+			<h1 class="major">Prediction Map</h1>
+			<p>
+				This interactive map allows you to find accident zone along an
+				optimized driving route between two locations in Greater London at
+				your provided time.
+			</p>
 
-			<h1 class="major">Interactive Prediction Map</h1>
-			<p>This map allows you to find accident zone along an optimized driving route between two
-				locations in Greater London at a particular time.</p>
-			<p>In the map, RED color marker show danger zone, it means you need to be more careful and need to drive
-				more safe. </p>
-			<p>YELLOW marker is used to indicate danger zone, where the probability of happening accident is less than
-				RED marker.</p>
-			<p>GREEN marker is safest among all marker, which have less probability of accident than RED and YELLOW.
-				Still, you need be take more precaution and drive safe. </p>
-
-			<p>To use the map, please pick : <br />
+			<p>
+				To use the map, please pick : <br />
 				(1) a date/time in the next 48 hours, <br />
 				(2) your origin and <br />
 				(3) your destination <br />
+			</p>
+
+			<p>To more </p> <button class="btn" onclick="moreInfo()"
+				style="margin-bottom: 15px; margin-top: -5px;">Click Here</button>
 
 
-				<p> <span> <strong>NOTE:-</strong> </span> Refresh page if there are no dropdown boxes in the map.
-					Please note that accident points may take a while to load.</p>
-
-
-				<!--Date time picker-->
-				<div class='map_prediction'>
-					<iframe src="{{ url_for('main.map') }}" name="iframe_a"></iframe>
-
-				</div>
-
-
+			<p>
+				<span> <strong>NOTE:-</strong> </span> Refresh page if there are no
+				dropdown boxes in the map. Please note that accident points may take a
+				while to load.
+			</p>
 		</div>
 	</section>
 
+	<div class="guidelines ">
+		<h3 style="text-align:center;padding-bottom:10px;font-weight: bold;">More Info.</h3>
+		<p>
+			When you input asked data, you able to see selected route by Google API,
+			in which accident zone is marked with three colour. <br /> <br>
+			<strong>RED - </strong> colour indicate the area where probability of
+			accident is more. <br>
+			<strong>YELLOW - </strong> colour indicate the area where probability of
+			accident is less than RED colour mark. <br>
+			<strong>GREEN - </strong> colour indicate the area where probability of
+			accident is less than both RED and YELLOW colour.
+		</p>
+		<h5 style="font-weight:bold;text-decoration: underline;">Insight info</h5>
+		<p>Your inputs will result in an API call to Google Map's Geolocation API.
+			In addition, your inputs will also trigger an API call to Dark Sky, which will provide information about the
+			weather condition
+			in London for your input time.
+			We will then feed all these inputs to our predictive model, which will output the corresponding accident
+			risk on the map.</p>
+
+		<button class="btn btn_close" onclick="closeFun()">Close</button>
+	</div>
+
+	<div class='map_prediction'>
+		<iframe src="{{ url_for('main.map') }}" name="iframe_a"></iframe>
+	</div>
 
 
+	<script>
+		function moreInfo() {
+			const more_info_class = document.getElementsByClassName("guidelines");
+			more_info_class[0].classList.add("active");
+		}
+
+		function closeFun() {
+			const more_info_class = document.getElementsByClassName("guidelines");
+			more_info_class[0].classList.remove("active");
+		}
+	</script>
 
 	<!-- Scripts -->
-	<script src="static/js/d3-tip.min.js"></script>
+	<!-- <script src="static/js/d3-tip.min.js"></script> -->
 	<script src="static/js/interaction.js"></script>
 	<script src="static/js/jquery.min.js"></script>
 	<script src="static/js/jquery.scrollex.min.js"></script>

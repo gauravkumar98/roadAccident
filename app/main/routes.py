@@ -68,6 +68,7 @@ def exploration():
 def interaction():
     return render_template('interaction.html')
 
+
 @main.route("/dataentry", methods=['GET', 'POST'])
 def dataentry():
     success =  None
@@ -144,7 +145,7 @@ def upload():
                 existing_file.to_csv("./app/UPLOAD_FOLDER/only_accident_points.csv",index=False)
                 csv_file=pd.read_csv("./app/UPLOAD_FOLDER/"+name)
 
-                success = 'Success: File is uploaded.'
+                success = 'File is uploaded.'
 
                 session['upload'] = 'upload'
                 return render_template('upload.html', success=success)
