@@ -26,7 +26,7 @@ def call_google(origin, destination, googlekey):
     URL = "https://maps.googleapis.com/maps/api/directions/json"
     res = requests.get(url=URL, params=PARAMS)
     data = res.json()
-    # parse json to retrieve all lat-lng
+    # parse json to retrieve all lat-lng and  array of DirectionsLeg objects
     waypoints = data['routes'][0]['legs']
 
     lats = []
@@ -62,17 +62,19 @@ def calc_distance(accident_dataset, lats, longs, google_count_lat_long):
     longs_r = list(itertools.chain.from_iterable(itertools.repeat(x, accident_point_counts) for x in longs))
 
     # append
-    new['lat2'] = np.radians(lats_r)
+    new['lat2'] = np.radians(lats_r)#convert degrees to radians and store in array
     new['long2'] = np.radians(longs_r)
 
     # cal radiun50m
     new['lat1'] = np.radians(new['Latitude'])
     new['long1'] = np.radians(new['Longitude'])
+
     new['dlon'] = new['long2'] - new['long1']
     new['dlat'] = new['lat2'] - new['lat1']
-
+    #formula to calculate distance between lat and long:sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
     new['a'] = np.sin(new['dlat'] / 2) ** 2 + np.cos(new['lat1']) * np.cos(new['lat2']) * np.sin(new['dlon'] / 2) ** 2
     new['distance'] = R * (2 * np.arctan2(np.sqrt(new['a']), np.sqrt(1 - new['a'])))
+
 
     return new
 
@@ -138,7 +140,7 @@ def model_pred(new_df):
 
 def api_call(origin, destination, tm):
 
-    #parse time
+    #creating date  time object strptime
     datetime_object = datetime.datetime.strptime(tm, '%Y-%m-%dT%H:%M')
 
     # get route planning
@@ -158,7 +160,6 @@ def api_call(origin, destination, tm):
 
     else:
         # filter for accident points in route cluster
-        #dat = accident_dataset[accident_dataset['Cluster'].isin(list(clusters['Cluster']))]
         dat = dat.drop(columns=['Hour', 'Day_of_year', 'Day_of_Week', 'Year'], axis=0)
         dat['Hour'] = datetime_object.hour
         day_of_year = (datetime_object - datetime.datetime(datetime_object.year, 1, 1)).days + 1
@@ -166,6 +167,7 @@ def api_call(origin, destination, tm):
         day_of_week = datetime_object.date().weekday() + 1
         dat['Day_of_Week'] = day_of_week
         dat['Year'] = datetime_object.year
+
 
         #get weather prediction for unique cluster in past accident dataset
         ucluster = list(dat['Cluster'].unique())

@@ -74,8 +74,8 @@ def dataentry():
     success =  None
     if request.method == 'POST':
         content = request.form.to_dict().values()
-        print((content))
         
+
         with open('./app/UPLOAD_FOLDER/only_accident_points.csv', 'a', newline='') as f_object:    
             writer_object = writer(f_object)
             writer_object.writerow(content)  
@@ -149,7 +149,7 @@ def upload():
 
                 session['upload'] = 'upload'
                 return render_template('upload.html', success=success)
-                # return render_template('uploaded.html')
+
 
 
             session['upload'] = None

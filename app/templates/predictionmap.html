@@ -86,6 +86,36 @@
         .interaction-input{
           display: none;
         }
+        @media (max-width: 900px) {
+        #datetime-input,
+        #origin-input,
+        #destination-input {
+          font-size: 12px;
+          margin-left: 10px;
+          padding: 0 10px 0 11px;
+          width: 120px;
+        }
+      }
+      @media (max-width: 690px) {
+        #datetime-input,
+        #origin-input,
+        #destination-input {
+          font-size: 12px;
+          margin-left: 10px;
+          padding: 0 8px 0 8px;
+          width: 80px;
+        }
+      }
+      @media (max-width: 520px) {
+        #datetime-input,
+        #origin-input,
+        #destination-input {
+          font-size: 8px;
+          margin-left: 5px;
+          padding: 0 2px 0 2px;
+          width: 60px;
+        }
+      }
 
     </style>
 </head>
@@ -242,7 +272,7 @@
         function showAccidents2(accident_json) {
 
             var icon = {
-                //url: 'https://cdn3.iconfinder.com/data/icons/map-markers-1/512/death-512.png',
+
                 url:'static/images/redMark.png',
                 scaledSize: new google.maps.Size(20, 32), // scaled size
             };
@@ -261,7 +291,7 @@
                 else if(accident_json.accidents[i].probability.toString()>"0.3"){
                     icon.url='static/images/yelloMark.png'
                 }
-                else if(accident_json.accidents[i].probability.toString()>"0.2"){
+                else {
                     icon.url='static/images/greenMark.png'
                 }
 
